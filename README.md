@@ -5,4 +5,5 @@ The Farbox Templates
 大部分BUG已经改了，才发布出来，如果还有什么BUG，请与我联系。
 
 Email: root@scar1et.org
+
 By: scar1et
