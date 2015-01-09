@@ -4,3 +4,24 @@
 {% set total_posts = get_posts(limit=300, sort='desc') %}
 {% set entries = group(total_posts, 'tags') %}
 {% set cpt= 1 %}
+
+{% block content %}
+<div clss="am-g">
+    <div class="am-u-lg-9 am-u-sm-centered">
+        {% for year, posts in entries %}
+            <h1 class="am-article-title">{{ year }}</h1>
+            <ul>
+            {% for post in posts %}
+                <li style="list-style:circle">
+                    <span class="article-date">{{ post.date | date("%Y-%m-%d") }}</span>
+                    <a href="{{ post.url }}" title="{{ post.title }}" class="article-text">{{ post.title }}</a>
+                </li>
+            {% endfor %}
+            </ul>
+    {% endfor %}
+    {% include 'include/paginator.html' %}
+    </div>
+</div>
+
+
+{% endblock %}
