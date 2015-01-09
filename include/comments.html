@@ -1,0 +1,56 @@
+<hr>
+{% set custom_comment=get_text_file('comment_js').raw_content %}
+{% if custom_comment %}
+    <div id="disqus_thread" class="comments"></div>
+    {{ custom_comment }}
+{% else %}
+
+<div id="fb_comments_container">
+	<!--- comment list -->
+    <ul class="am-comments-list" id="fb_comments">
+        {% set comments = get_comments(context_doc) %}
+        {% for comment in comments %}
+            <li class="am-comment">
+                <a href="#">
+                    <img class="am-comment-avatar" src="/t/avatar.png">
+                </a>
+                <div class="am-comment-main">
+                	<header class="am-comment-hd">
+                    <div class="am-comment-meta">
+                        <a class="am-comment-author" href="{{comment.site or '#'}}">{{ comment.author or 'Anonymous'}}</a>
+                         for
+                        <time>{{ comment.date | date("%Y-%m-%d %H:%M:%S") }}</time>
+                    </div>
+					</header>
+                    <div class="am-comment-bd">
+                        {{ comment.content }}
+                    </div>
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+    
+	<!--- comment -->
+    {% if comment_allowed %}
+    <form class="am-form" id="fb_new_comment" method="post" action="#fb_new_comment">
+        <ul class="my-comment" style="padding: 0em;">
+        <div class="am-form-group">
+            <textarea rows="5" id="cm-content" placeholder="Content" name="content">{{ comment_content }}</textarea>
+            {% if error %}<span class=""> {{ error }}</span> {% endif %}
+        </div>
+        <li class="am-form-group">
+            <input type="text" name="author" id="c_author" class="am-form-field" placeholder="Name">
+        </li>
+        <li class="am-form-group">
+            <input type="text" name="email" id="c_email" class="am-form-field" placeholder="E-mail">
+        </li>
+        <li class="am-form-group">
+            <input type="text" name="site" id="c_site" class="am-form-field" placeholder="Site">
+        </li>
+            <input type="submit" id="c_submit" value="Comment" class="am-btn am-btn-default am-fr" />
+    </form>
+
+    {% endif %}
+
+</div>
+{% endif %}

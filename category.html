@@ -1,0 +1,24 @@
+<div class="am-g am-g-fixed">
+<div class="am-u-md-9 am-u-md-push-3">
+    {% include 'include/posts_list.html' %}
+    {% include 'include/paginator.html' %}
+    </div>
+    <div class="am-u-md-3 am-u-md-pull-9 my-sidebar">
+        <div class="am-offcanvas" id="sidebar">
+            <div class="am-offcanvas-bar">
+                <ul class="am-nav">
+                    <li><a href="/">主页</a></li>
+                    <li><a href="/archive?use=tags">分类</a></li>
+                    {% if has('posts') %}
+                    <li><a href="/archive">归档</a></li>
+                    {% endif %}
+                    <li><a href="http://about.scar1et.org/" target="_blink">关于我</a></li>
+                    {% if has('links.md') %}
+                    <li><a href="/links.md">友情链接</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </div>
+    <a href="#sidebar" class="am-btn am-btn-sm am-btn-default am-icon-bars am-show-sm-only my-button" data-am-offcanvas><span class="am-sr-only">侧栏导航</span></a>
+</div>
